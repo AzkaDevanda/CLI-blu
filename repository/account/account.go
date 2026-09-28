@@ -12,6 +12,17 @@ import (
 const filebae = "filebase/account.txt"
 
 func Save(name string, amount float32) error {
+
+	account, err := FindAll()
+
+	if err != nil {
+		return err
+	}
+
+	if _, exist := account[name]; exist {
+		return errors.New("Account sudah ada")
+	}
+
 	row := fmt.Sprintf("%s,%.2f\n", name, amount)
 
 	file, err := os.OpenFile(filebae, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)

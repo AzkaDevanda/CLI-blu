@@ -39,10 +39,15 @@ func main() {
 		amount := float32(parseAmount)
 
 		// TODO: LOGIC SERVICE ADD ACCOUNT
-		services.Save(name, amount)
+		err = services.Save(name, amount)
 
-		fmt.Printf("Create %v's Account with amount is %v", name, amount)
+		if err != nil {
+			fmt.Println("ERROR:", err)
+		} else {
+			fmt.Printf("Create %v's Account with amount is %v", name, amount)
 
+		}
+		
 	case "transfer":
 		if len(os.Args) != 5 {
 			fmt.Println("Format: transfer <from> <to> <amount>")

@@ -5,5 +5,5 @@ import (
 )
 
 func Save(name string, amount float32) error {
-	return account.Add_account(name, amount)
+	return account.Save(name, amount)
 }

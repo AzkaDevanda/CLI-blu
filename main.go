@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/AzkaDevanda/CLI_blu/services"
 )
 
 func list() {
@@ -37,6 +39,7 @@ func main() {
 		amount := float32(parseAmount)
 
 		// TODO: LOGIC SERVICE ADD ACCOUNT
+		services.Save(name, amount)
 
 		fmt.Printf("Create %v's Account with amount is %v", name, amount)
 

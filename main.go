@@ -62,8 +62,13 @@ func main() {
 		amount := float32(parseAmount)
 
 		// LOGIC SERVICE TRANSFER
+		err = services.Transfer(from, to, amount)
+		if err != nil {
+			fmt.Println("ERROR:", err)
+		} else {
+			fmt.Printf("Transfer amount from %v's to %v's account by %v", from, to, amount)
 
-		fmt.Printf("Transfer amount from %v's to %v's account by %v", from, to, amount)
+		}
 
 	case "add_deposit":
 		if len(os.Args) != 4 {

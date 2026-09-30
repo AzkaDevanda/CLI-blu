@@ -70,6 +70,25 @@ func FindByName(name string) (float32, error) {
 
 }
 
+func UpdateAll(accounts map[string]float32) error {
+
+	file, err := os.Create(filebae)
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	for name, balance := range accounts {
+		row := fmt.Sprintf("%s,%.2f\n", name, balance)
+		_, err := file.WriteString(row)
+		if err != nil {
+			return nil
+		}
+	}
+	return nil
+}
+
 func FindAll() (map[string]float32, error) {
 	accounts := make(map[string]float32)
 

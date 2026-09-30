@@ -34,11 +34,11 @@ func main() {
 		name := os.Args[2]
 		parseAmount, err := strconv.ParseFloat(os.Args[3], 32)
 		if err != nil {
-			panic(err)
+			fmt.Println("ERROR: Invalid input amount")
+			return
 		}
 		amount := float32(parseAmount)
 
-		// TODO: LOGIC SERVICE ADD ACCOUNT
 		err = services.Save(name, amount)
 
 		if err != nil {
@@ -47,7 +47,7 @@ func main() {
 			fmt.Printf("Create %v's Account with amount is %v", name, amount)
 
 		}
-		
+
 	case "transfer":
 		if len(os.Args) != 5 {
 			fmt.Println("Format: transfer <from> <to> <amount>")
@@ -77,9 +77,15 @@ func main() {
 		}
 		amount := float32(parseAmount)
 
-		fmt.Printf("add deposit %v's with amount %v success", name, amount)
-
 		// LOGIC SERVICE ADD DEPOSIT
+		err = services.Deposit(name, amount)
+		if err != nil {
+			fmt.Println("ERROR:", err)
+
+		} else {
+			fmt.Printf("add deposit %v's with amount %v success", name, amount)
+
+		}
 
 	case "accrue_interest":
 		if len(os.Args) != 2 {

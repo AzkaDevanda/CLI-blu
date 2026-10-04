@@ -98,6 +98,7 @@ func main() {
 		}
 
 		// LOGIC ACCURE INTEREST
+		services.AccureInterest()
 
 	default:
 		fmt.Println("Unknow Service", service)

@@ -51,6 +51,25 @@ func Save(name string, amount float32) error {
 	return nil
 }
 
+func UpdateAll(deposit []Deposit, amount float32) error {
+	currentTime := time.Now().Format("2006-01-02 15:04:05")
+	file, err := os.Create(filebase)
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	for _, d := range deposit {
+		row := fmt.Sprintf("%s,%.2f,%s\n", d.Name, d.Amount, currentTime)
+		_, err := file.WriteString(row)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func FindAll() ([]Deposit, error) {
 	var deposits []Deposit
 

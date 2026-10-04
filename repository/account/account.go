@@ -83,7 +83,7 @@ func UpdateAll(accounts map[string]float32) error {
 		row := fmt.Sprintf("%s,%.2f\n", name, balance)
 		_, err := file.WriteString(row)
 		if err != nil {
-			return nil
+			return err
 		}
 	}
 	return nil

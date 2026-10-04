@@ -21,7 +21,7 @@ func Transfer(from string, to string, amount float32) error {
 
 	err = account.UpdateAll(accounts)
 	if err != nil {
-		return nil
+		return err
 	}
 
 	return payment.Save(from, to, amount)

@@ -92,7 +92,7 @@ func main() {
 
 		}
 
-	case "accrue_interest":
+	case "accure_interest":
 		if len(os.Args) != 2 {
 			fmt.Println("Format : accrue_interest")
 		}
